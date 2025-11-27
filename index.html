@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameOn - Tu Espacio Deportivo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            background: linear-gradient(135deg, #77a5fa 0%, #b370ff 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 15px 50px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 35px;
+            font-weight: 700;
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #010394;
+        }
+
+        /* HOME SECTION */
+        .home {
+            padding: 120px 50px 80px;
+            text-align: center;
+            background: linear-gradient(135deg, #9966ea 0%, #a24b74 100%);
+            color: #ffffff;
+        }
+
+        .home h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+
+        .home-image {
+            width: 150px;
+            height: 150px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.39);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .home p {
+            font-size: 22px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .section {
+            padding: 80px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 40px;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #7d63f1;
+        }
+
+        .quienes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .quienes-text {
+            font-size: 25px;
+        }
+
+        .quienes-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .team-photo {
+            aspect-ratio: 1;
+            background: #e0e7ff;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+        }
+
+        .proyectos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .proyecto-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .proyecto-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .proyecto-imagen {
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+        }
+
+        .proyecto-content {
+            padding: 25px;
+        }
+
+        .proyecto-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #6366f1;
+        }
+
+        .beneficios {
+            background: #f9fafb;
+        }
+
+        .beneficios-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+        }
+
+        .beneficio-item {
+            flex: 1 1 250px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .beneficio-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .beneficio-item h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #6366f1;
+        }
+
+        .contacto-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #6366f1;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: #6366f1;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #4f46e5;
+        }
+
+        footer {
+            background: #1f2937;
+            color: #9ca3af;
+            padding: 30px 50px;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s;
+            }
+
+            nav.active {
+                max-height: 300px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            header {
+                padding: 15px 20px;
+            }
+
+            .home h1 {
+                font-size: 36px;
+            }
+
+            .home p {
+                font-size: 18px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .quienes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .proyectos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        img{
+            width: 1200px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#home" class="logo">GameOn</a>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#quienes-somos">Quiénes Somos</a></li>
+                    <li><a href="#proyectos">Deportes</a></li>
+                    <li><a href="#beneficios">Beneficios</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HOME -->
+    <section class="home" id="home">
+        <h1>GameOn - Tu Mejor Versión</h1>
+        <div class="home-image">⚽</div>
+        <p>"Entrena hoy, triunfa mañana"</p>
+    </section>
+
+    <section class="section" id="quienes-somos">
+        <h2>Quiénes Somos</h2>
+        <div class="quienes-grid">
+            <div class="quienes-text">
+                <p>Somos GameOn, un centro deportivo dedicado a promover un estilo de vida activo y saludable. Nuestro equipo de profesionales está comprometido en ayudarte a alcanzar tus metas deportivas y de bienestar.</p>
+                <br>
+                <p>Con más de 3 años de experiencia, ofrecemos entrenamientos personalizados, instalaciones de primera categoría y un ambiente motivador donde cada persona puede superarse día a día.</p>
+            </div>
+            <div class="quienes-images">
+                <div class="team-photo">👥</div>
+                <div class="team-photo">💪</div>
+                <div class="team-photo">🏆</div>
+                <div class="team-photo">❤️</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="proyectos">
+        <h2>Nuestros Deportes</h2>
+            </div>
+            <div class="proyecto-card">
+                <div class="proyecto-imagen"></div>
+                <img src="Gimnacio.jpg" width="100%" alt="Gimnacio">
+                <div class="proyecto-content">
+                    <h3>Gimnasio</h3>
+                    <p>Entrena con equipamiento de última generación y planes personalizados para desarrollar fuerza, músculo y mejorar tu composición corporal.</p>
+                </div>
+            </div>
+            <div class="proyecto-card">
+                <div class="proyecto-imagen"></div>
+                <img src="Yoga.jpg" width="100%" alt="Yoga">
+                <div class="proyecto-content">
+                    <h3>Yoga</h3>
+                    <p>Encuentra equilibrio entre cuerpo y mente con nuestras clases de yoga que mejoran flexibilidad, reducen estrés y promueven el bienestar integral.</p>
+                </div>
+            </div>
+            <div class="proyecto-card">
+                <div class="proyecto-imagen"></div>
+                <img src="Ciclismo.jpg" width="100%" alt="Ciclismo">
+                <div class="proyecto-content">
+                    <h3>Ciclismo</h3>
+                    <p>Pedalea hacia tus objetivos con clases de spinning indoor y rutas outdoor organizadas por nuestros instructores certificados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section beneficios" id="beneficios">
+        <h2>Beneficios de Entrenar con Nosotros</h2>
+        <div class="beneficios-flex">
+            <div class="beneficio-item">
+                <div class="beneficio-icon">🎯</div>
+                <h3>Entrenamiento Personalizado</h3>
+                <p>Planes adaptados a tus objetivos y necesidades específicas.</p>
+            </div>
+            <div class="beneficio-item">
+                <div class="beneficio-icon">👨‍🏫</div>
+                <h3>Instructores Expertos</h3>
+                <p>Personal certificado con años de experiencia en el área deportiva.</p>
+            </div>
+            <div class="beneficio-item">
+                <div class="beneficio-icon">🏢</div>
+                <h3>Instalaciones Premium</h3>
+                <p>Espacios modernos y equipamiento de alta calidad para tu entrenamiento.</p>
+            </div>
+            <div class="beneficio-item">
+                <div class="beneficio-icon">🤝</div>
+                <h3>Comunidad Activa</h3>
+                <p>Forma parte de un grupo motivado que comparte tus mismos objetivos.</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
